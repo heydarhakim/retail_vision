@@ -1,3 +1,9 @@
 venv
-venv/
-.venv
+.env
+venv
+uploads/
+static/uploads/
+instance/
+*.db
+*.sqlite
+__pycache__
