@@ -1,6 +1,6 @@
 venv
 .env
-venv
+venv/
 uploads/
 static/uploads/
 instance/
