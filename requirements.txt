@@ -1,0 +1,20 @@
+# --- Core API Framework ---
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0   # ASGI server with high-performance uvloop
+python-multipart>=0.0.6     # Required for File/UploadFile handling in FastAPI
+
+# --- Database & ORM ---
+sqlalchemy>=2.0.25          # Modern ORM (v2.0 syntax)
+pydantic-settings>=2.1.0    # For robust .env configuration management
+
+# --- ML & Computer Vision ---
+ultralytics>=8.1.0          # YOLOv8 implementation (automatically installs torch & torchvision)
+# Note: In a strict prod environment, you might pin torch explicitly here 
+# to match your CUDA version (e.g., torch==2.1.2+cu118)
+
+# --- Image Processing ---
+pillow>=10.2.0              # For basic image IO (PIL)
+opencv-python-headless>=4.9 # Lightweight OpenCV (no GUI) for backend processing
+
+# --- Utilities ---
+aiofiles>=23.2.1            # (Optional) For async file IO if needed later
