@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailVision | Shelf Compliance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bbox-overlay { position: absolute; border: 2px solid; background: rgba(0,0,0,0); pointer-events: none; }
+        .label { position: absolute; color: white; font-size: 10px; padding: 1px 3px; top: -15px; left: -2px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="bg-indigo-600 text-white p-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">RetailVision <span class="text-indigo-200 text-sm font-normal">| Audit & Compliance</span></h1>
+            <div id="status" class="text-xs bg-indigo-500 px-2 py-1 rounded">Ready</div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <h2 class="text-lg font-semibold mb-4">New Audit</h2>
+                
+                <label class="block text-sm font-medium mb-1">Select Store</label>
+                <select id="storeSelect" class="w-full p-2 border rounded mb-4 bg-slate-50">
+                    <option>Loading...</option>
+                </select>
+
+                <label class="block text-sm font-medium mb-1">Shelf Image</label>
+                <input type="file" id="imageInput" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 mb-4"/>
+
+                <button onclick="runAudit()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded transition">
+                    Analyze Shelf
+                </button>
+            </div>
+
+            <div id="resultsPanel" class="hidden bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Compliance Score</h2>
+                    <span id="scoreBadge" class="text-2xl font-bold text-green-600">--%</span>
+                </div>
+                
+                <h3 class="text-sm font-semibold text-red-500 uppercase tracking-wide mb-2">Out of Stock / Low</h3>
+                <ul id="missingList" class="text-sm space-y-1 mb-4 text-slate-600 list-disc pl-4"></ul>
+
+                <h3 class="text-sm font-semibold text-orange-500 uppercase tracking-wide mb-2">Misplaced / Unexpected</h3>
+                <ul id="misplacedList" class="text-sm space-y-1 text-slate-600 list-disc pl-4"></ul>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2">
+            <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 min-h-[500px] flex items-center justify-center relative overflow-hidden" id="canvasContainer">
+                <p id="placeholderText" class="text-slate-400">Upload an image to visualize detections</p>
+                <img id="displayImage" class="hidden max-w-full max-h-[600px] object-contain" />
+                <div id="overlays" class="absolute top-0 left-0 w-full h-full pointer-events-none"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
